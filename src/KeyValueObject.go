@@ -34,29 +34,3 @@ func (k *ValueObject) SetVal(val string) {
 func (k *ValueObject) GetH() int {
 	return k.hashcode
 }
-
-// This isn't functional, I guess.
-
-func (h *ValueObject) HashCode() int {
-	if h.hashcode != 0 {
-		return h.hashcode
-	}
-
-	if len(h.Key) == 0 {
-		return h.hashcode
-	}
-	var x int
-	for i := 0; i < len(h.Key); i++ {
-		chr := string([]rune(h.Key))
-		for _, c := range chr {
-			return int(c)
-		}
-		h.hashcode = h.hashcode<<5 - h.hashcode + x
-		h.hashcode |= 0
-	}
-	return h.hashcode
-}
-
-func (k *ValueObject) ToString() string {
-	return "KeyValueObject@" + string(k.HashCode()) + ":Key=" + k.Key + ", Value=" + k.Value + ""
-}
